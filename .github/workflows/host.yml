@@ -1,0 +1,38 @@
+name: run-lint-and-deploy-container
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "apps/host/**"
+
+defaults:
+  run:
+    working-directory: apps/host
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+          run_install: true
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: TypeScript check
+        run: pnpm tsc --noEmit
+
+      - name: Run lint
+        run: pnpm run lint --max-warnings=0
+
+      - name: Build
+        run: pnpm run build
