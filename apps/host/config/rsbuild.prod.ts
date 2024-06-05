@@ -4,7 +4,7 @@ import { ModuleFederationPlugin } from '@module-federation/enhanced/rspack';
 
 const { publicVars } = loadEnv({ prefixes: ['APP_'] });
 
-// const REMOTE_URL = process.env.REMOTE_URL;
+const PRODUCTION_DOMAIN = process.env.PRODUCTION_DOMAIN;
 
 export default defineConfig({
   output: {
@@ -27,7 +27,7 @@ export default defineConfig({
         new ModuleFederationPlugin({
           name: 'host',
           remotes: {
-            // remote: `remote@${REMOTE_URL}/mf-manifest.json`,
+            remote: `remote@${PRODUCTION_DOMAIN}/mf-manifest.json`,
           },
           shared: ['react', 'react-dom'],
         }),

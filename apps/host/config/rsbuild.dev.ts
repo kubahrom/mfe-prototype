@@ -29,7 +29,7 @@ export default defineConfig({
         new ModuleFederationPlugin({
           name: 'host',
           remotes: {
-            // remote: `remote@http://localhost:${REMOTE_PORT}/mf-manifest.json`,
+            remote: `remote@http://localhost:${REMOTE_PORT}/mf-manifest.json`,
           },
           shared: ['react', 'react-dom'],
         }),

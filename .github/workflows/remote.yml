@@ -1,15 +1,15 @@
-name: CI/CD for Host app to AWS deploy
+name: CI/CD for Remote app to AWS deploy
 
 on:
   push:
     branches:
       - main
     paths:
-      - "apps/host/**"
+      - "apps/remote/**"
 
 defaults:
   run:
-    working-directory: apps/host
+    working-directory: apps/remote
 
 jobs:
   CI:
@@ -36,7 +36,7 @@ jobs:
       - name: Build
         run: pnpm run build
         env:
-          ASSET_PREFIX: ${{ secrets.HOST_ASSET_PREFIX }}/
+          ASSET_PREFIX: ${{ secrets.REMOTE_ASSET_PREFIX }}/
           PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
 
       - name: Upload build artifacts
@@ -67,7 +67,7 @@ jobs:
         uses: shinyinc/action-aws-cli@1.1
 
       - name: Deploy on AWS S3 bucket
-        run: aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}${{ secrets.HOST_ASSET_PREFIX }}
+        run: aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}${{ secrets.REMOTE_ASSET_PREFIX }}
 
       - name: Invalidate CloudFront cache
-        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }} --paths "${{ secrets.HOST_ASSET_PREFIX }}/index.html" "${{ secrets.HOST_ASSET_PREFIX }}/mf-manifest.html" "${{ secrets.HOST_ASSET_PREFIX }}/mf-stats.html"
+        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }} --paths "${{ secrets.REMOTE_ASSET_PREFIX }}/mf-manifest.html" "${{ secrets.REMOTE_ASSET_PREFIX }}/mf-stats.html" "${{ secrets.REMOTE_ASSET_PREFIX }}/@mf-types.d.ts" "${{ secrets.REMOTE_ASSET_PREFIX }}/@mf-types.zip"
