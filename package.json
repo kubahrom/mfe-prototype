@@ -1,0 +1,12 @@
+{
+  "name": "mfe-prototype",
+  "description": "DP prototype micro frontends protorype",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "start": "pnpm run --filter mfe_* --parallel dev",
+    "build": "pnpm run --filter mfe_* build",
+    "serve": "pnpm run --filter mfe_* --parallel serve",
+    "clean": "pnpm run --filter mfe_* --parallel clean"
+  }
+}
