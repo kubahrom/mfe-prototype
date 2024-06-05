@@ -1,4 +1,4 @@
-name: CI/CD for Remote app to AWS deploy
+name: CI/CD - Remote app
 
 on:
   push:
@@ -36,7 +36,6 @@ jobs:
       - name: Build
         run: pnpm run build
         env:
-          ASSET_PREFIX: ${{ secrets.REMOTE_ASSET_PREFIX }}/
           PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
 
       - name: Upload build artifacts
@@ -67,7 +66,7 @@ jobs:
         uses: shinyinc/action-aws-cli@1.1
 
       - name: Deploy on AWS S3 bucket
-        run: aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}${{ secrets.REMOTE_ASSET_PREFIX }}
+        run: aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}/remote
 
       - name: Invalidate CloudFront cache
-        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }} --paths "${{ secrets.REMOTE_ASSET_PREFIX }}/mf-manifest.html" "${{ secrets.REMOTE_ASSET_PREFIX }}/mf-stats.html" "${{ secrets.REMOTE_ASSET_PREFIX }}/@mf-types.d.ts" "${{ secrets.REMOTE_ASSET_PREFIX }}/@mf-types.zip"
+        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }} --paths "/remote/mf-manifest.html" "/remote/mf-stats.html" "/remote/@mf-types.d.ts" "/remote/@mf-types.zip"

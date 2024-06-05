@@ -12,7 +12,7 @@ export default defineConfig({
       js: '[name].[contenthash:8].js',
       css: '[name].[contenthash:8].css',
     },
-    assetPrefix: process.env.ASSET_PREFIX || '',
+    assetPrefix: '/host/',
   },
   html: {
     template: './public/index.html',
@@ -27,7 +27,7 @@ export default defineConfig({
         new ModuleFederationPlugin({
           name: 'host',
           remotes: {
-            remote: `remote@${PRODUCTION_DOMAIN}/mf-manifest.json`,
+            remote: `remote@${PRODUCTION_DOMAIN}/remote/mf-manifest.json`,
           },
           shared: ['react', 'react-dom'],
         }),

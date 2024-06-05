@@ -10,10 +10,10 @@ export default defineConfig({
       js: '[name].[contenthash:8].js',
       css: '[name].[contenthash:8].css',
     },
-    assetPrefix: process.env.ASSET_PREFIX || '',
+    assetPrefix: '/remote/',
   },
   html: {
-    template: './public/indexProd.html',
+    template: './public/index.html',
   },
   plugins: [pluginReact()],
   source: {

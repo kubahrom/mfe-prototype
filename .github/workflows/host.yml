@@ -1,4 +1,4 @@
-name: CI/CD for Host app to AWS deploy
+name: CI/CD - Host app
 
 on:
   push:
@@ -36,8 +36,7 @@ jobs:
       - name: Build
         run: pnpm run build
         env:
-          ASSET_PREFIX: ${{ secrets.HOST_ASSET_PREFIX }}/
-          PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
+          PRODUCTION_DOMAIN: ${{ secrets.HOST_PRODUCTION_DOMAIN }}
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
@@ -67,7 +66,7 @@ jobs:
         uses: shinyinc/action-aws-cli@1.1
 
       - name: Deploy on AWS S3 bucket
-        run: aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}${{ secrets.HOST_ASSET_PREFIX }}
+        run: aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}/host
 
       - name: Invalidate CloudFront cache
-        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }} --paths "${{ secrets.HOST_ASSET_PREFIX }}/index.html" "${{ secrets.HOST_ASSET_PREFIX }}/mf-manifest.html" "${{ secrets.HOST_ASSET_PREFIX }}/mf-stats.html"
+        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }} --paths "/host/index.html" "/host/mf-manifest.html" "/host/mf-stats.html"
