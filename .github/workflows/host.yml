@@ -35,12 +35,14 @@ jobs:
 
       - name: Build
         run: pnpm run build
+        env:
+          ASSET_PREFIX: ${{ secrets.HOST_ASSET_PREFIX }}/
 
       - name: Setup AWS cli
         uses: shinyinc/action-aws-cli@1.1
 
       - name: Deploy on AWS S3 bucket
-        run: aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}/host/latest
+        run: aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}${{ secrets.HOST_ASSET_PREFIX }}
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}

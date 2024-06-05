@@ -4,7 +4,7 @@ import { ModuleFederationPlugin } from '@module-federation/enhanced/rspack';
 
 const { publicVars } = loadEnv({ prefixes: ['APP_'] });
 
-const REMOTE_URL = process.env.REMOTE_URL;
+// const REMOTE_URL = process.env.REMOTE_URL;
 
 export default defineConfig({
   output: {
@@ -12,7 +12,7 @@ export default defineConfig({
       js: '[name].[contenthash:8].js',
       css: '[name].[contenthash:8].css',
     },
-    // assetPrefix: process.env.APP_ASSET_PREFIX || "",
+    assetPrefix: process.env.ASSET_PREFIX || '',
   },
   html: {
     template: './public/index.html',
