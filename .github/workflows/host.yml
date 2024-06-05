@@ -19,22 +19,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup PNPM
-        uses: pnpm/action-setup@v4
-        with:
-          version: 8
-
       - name: Install dependencies
-        run: pnpm install
+        run: npm install
 
       - name: TypeScript check
-        run: pnpm tsc --noEmit
+        run: npm tsc --noEmit
 
       - name: Run lint
-        run: pnpm run lint --max-warnings=0
+        run: npm run lint --max-warnings=0
 
       - name: Build
-        run: pnpm run build
+        run: npm run build
         env:
           ASSET_PREFIX: ${{ secrets.HOST_ASSET_PREFIX }}/
 
@@ -42,7 +37,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: dist
-          path: dist
+          path: apps/host/dist
 
   CD:
     needs: CI
@@ -60,7 +55,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: dist
-          path: dist
+          path: apps/host/dist
 
       - name: Setup AWS cli
         uses: shinyinc/action-aws-cli@1.1

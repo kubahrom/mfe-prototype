@@ -9,7 +9,7 @@
 export default function App() {
   return (
     <div>
-      Container app updated
+      Container app updated!
       <div>
         {/* <Suspense fallback={<div>Loading...</div>}>
           <RemoteCounter title="title from container" />
