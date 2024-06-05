@@ -12,7 +12,7 @@
 // });
 
 export default function App() {
-  const a: string = 5;
+  const a = 5;
   return (
     <div>
       Container app
