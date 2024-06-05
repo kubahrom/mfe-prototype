@@ -43,7 +43,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: dist
-          path: apps/host/dist
+          path: apps/remote/dist
 
   CD:
     needs: CI
@@ -61,7 +61,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: dist
-          path: apps/host/dist
+          path: apps/remote/dist
 
       - name: Setup AWS cli
         uses: shinyinc/action-aws-cli@1.1
