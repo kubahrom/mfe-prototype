@@ -1,5 +1,5 @@
 import { loadRemote } from '@module-federation/enhanced/runtime';
-import React, { Suspense, useEffect, useRef } from 'react';
+import React, { Suspense } from 'react';
 
 const RemoteCounter = React.lazy(async () => {
   const res = await loadRemote('remote/Counter');
@@ -15,24 +15,24 @@ export default function App() {
           <RemoteCounter title="title from container" />
         </Suspense>
 
-        <Suspense fallback={<div>Loading...</div>}>
+        {/* <Suspense fallback={<div>Loading...</div>}>
           <MountRemoteApp />
-        </Suspense>
+        </Suspense> */}
       </div>
     </div>
   );
 }
 
-export const MountRemoteApp = () => {
-  const ref = useRef<HTMLDivElement>(null);
+// export const MountRemoteApp = () => {
+//   const ref = useRef<HTMLDivElement>(null);
 
-  // console.log(remote);
+//   // console.log(remote);
 
-  useEffect(() => {
-    loadRemote('remote/RemoteApp').then(({ mount }) => {
-      mount(ref.current!);
-    });
-  }, []);
+//   useEffect(() => {
+//     loadRemote('remote/RemoteApp').then(({ mount }) => {
+//       mount(ref.current!);
+//     });
+//   }, []);
 
-  return <div ref={ref} />;
-};
+//   return <div ref={ref} />;
+// };

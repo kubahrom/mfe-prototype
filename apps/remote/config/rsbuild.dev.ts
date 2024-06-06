@@ -29,7 +29,20 @@ export default defineConfig({
             './RemoteApp': './src/bootstrap',
             './Counter': './src/Counter',
           },
-          shared: ['react', 'react-dom'],
+          shared: {
+            react: {
+              version: '^18.2.0',
+              singleton: true,
+            },
+            'react-dom': {
+              version: '^18.2.0',
+              singleton: true,
+            },
+            'react-router-dom': {
+              version: '^6.22.3',
+              singleton: true,
+            },
+          },
         }),
       ]);
     },
