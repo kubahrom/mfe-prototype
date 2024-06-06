@@ -12,16 +12,19 @@
   },
   "dependencies": {
     "@module-federation/enhanced": "^0.1.15",
+    "history": "^4.10.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.22.3"
+    "react-router-dom": "^5.2.0"
   },
   "devDependencies": {
     "@rsbuild/core": "^0.6.3",
     "@rsbuild/plugin-react": "^0.6.3",
+    "@types/history": "^4.7.11",
     "@types/node": "^20.14.0",
     "@types/react": "^18.2.79",
     "@types/react-dom": "^18.2.25",
+    "@types/react-router-dom": "^5.3.3",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
     "@typescript-eslint/parser": "^7.2.0",
     "eslint": "^8.57.0",

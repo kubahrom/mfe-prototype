@@ -15,13 +15,14 @@ export default defineConfig({
   },
   html: {
     template: './public/index.html',
+    crossorigin: true,
   },
   plugins: [pluginReact()],
   source: {
     define: publicVars,
   },
   tools: {
-    rspack: (config, { appendPlugins }) => {
+    rspack: (_, { appendPlugins }) => {
       appendPlugins([
         new ModuleFederationPlugin({
           name: 'remote',
@@ -39,7 +40,7 @@ export default defineConfig({
               singleton: true,
             },
             'react-router-dom': {
-              version: '^6.22.3',
+              version: '^5.2.0',
               singleton: true,
             },
           },

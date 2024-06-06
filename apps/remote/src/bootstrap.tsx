@@ -5,7 +5,7 @@ import App from './App';
 
 let root: ReactDOM.Root | null = null;
 
-const ROOT_EL_ID = 'remote';
+const ROOT_EL_ID = 'remote_root';
 
 // Mount function to mount React app to the specified element in the DOM
 const mount = (el: HTMLElement) => {
@@ -14,9 +14,11 @@ const mount = (el: HTMLElement) => {
   }
   root.render(
     <React.StrictMode>
-      <App />
+      <App />,
     </React.StrictMode>,
   );
+
+  root === null;
 };
 
 // Only run mount in development mode so that app can be run in isolation

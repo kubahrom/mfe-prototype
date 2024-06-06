@@ -1,15 +1,15 @@
-name: CI/CD - Remote app
+name: CI/CD - Auth app
 
 on:
   push:
     branches:
       - main
     paths:
-      - "apps/remote/**"
+      - "apps/auth/**"
 
 defaults:
   run:
-    working-directory: apps/remote
+    working-directory: apps/auth
 
 jobs:
   CI:
@@ -40,7 +40,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: dist
-          path: apps/remote/dist
+          path: apps/auth/dist
 
   CD:
     needs: CI
@@ -58,13 +58,13 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: dist
-          path: apps/remote/dist
+          path: apps/auth/dist
 
       - name: Setup AWS cli
         uses: shinyinc/action-aws-cli@1.1
 
       - name: Deploy on AWS S3 bucket
-        run: aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}/remote
+        run: aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}/auth
 
       - name: Invalidate CloudFront cache
-        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }} --paths "/remote/mf-manifest.html" "/remote/mf-stats.html" "/remote/@mf-types.d.ts" "/remote/@mf-types.zip"
+        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }} --paths "/auth/mf-manifest.html" "/auth/mf-stats.html" "/auth/@mf-types.d.ts" "/auth/@mf-types.zip"

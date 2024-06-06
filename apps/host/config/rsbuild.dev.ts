@@ -6,8 +6,6 @@ const { publicVars } = loadEnv({ prefixes: ['APP_'] });
 
 const PORT = parseInt(process.env.DEV_PORT || '') || 3000;
 
-const REMOTE_PORT = parseInt(process.env.DEV_REMOTE_PORT || '') || 3001;
-
 export default defineConfig({
   server: {
     port: PORT,
@@ -29,19 +27,21 @@ export default defineConfig({
         new ModuleFederationPlugin({
           name: 'host',
           remotes: {
-            remote: `remote@http://localhost:${REMOTE_PORT}/mf-manifest.json`,
+            marketing: `marketing@http://localhost:${process.env.DEV_MARKETING_PORT || 3001}/mf-manifest.json`,
+            auth: `auth@http://localhost:${process.env.DEV_AUTH_PORT || 3002}/mf-manifest.json`,
+            remote: `remote@http://localhost:3003/mf-manifest.json`,
           },
           shared: {
             react: {
-              version: '^18.2.0',
+              requiredVersion: '^18.2.0',
               singleton: true,
             },
             'react-dom': {
-              version: '^18.2.0',
+              requiredVersion: '^18.2.0',
               singleton: true,
             },
             'react-router-dom': {
-              version: '^6.22.3',
+              requiredVersion: '^5.2.0',
               singleton: true,
             },
           },
