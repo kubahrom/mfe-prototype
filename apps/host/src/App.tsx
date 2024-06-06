@@ -1,38 +1,34 @@
-import { loadRemote } from '@module-federation/enhanced/runtime';
-import React, { Suspense } from 'react';
+import { Suspense, lazy } from 'react';
+import Layout from './components/Layout';
+import { Route, Router, Switch } from 'react-router-dom';
+import { LoadingScreen } from './components/LoadingScreen';
+import { createBrowserHistory } from 'history';
 
-const RemoteCounter = React.lazy(async () => {
-  const res = await loadRemote('remote/Counter');
-  return res;
-});
+const MarketingLazy = lazy(() => import('./apps/MarketingApp'));
+const AuthLazy = lazy(() => import('./apps/AuthApp'));
+
+const history = createBrowserHistory();
 
 export default function App() {
   return (
-    <div>
-      Container app
-      <div>
-        <Suspense fallback={<div>Loading...</div>}>
-          <RemoteCounter title="title from container" />
+    <Router history={history}>
+      <Layout>
+        <Suspense fallback={<LoadingScreen />}>
+          <Switch>
+            <Route path="/test" exact>
+              <div style={{ border: '1px solid red' }}>
+                <h1>Test page</h1>
+              </div>
+            </Route>
+            <Route path="/auth">
+              <AuthLazy />
+            </Route>
+            <Route path="/">
+              <MarketingLazy />
+            </Route>
+          </Switch>
         </Suspense>
-
-        {/* <Suspense fallback={<div>Loading...</div>}>
-          <MountRemoteApp />
-        </Suspense> */}
-      </div>
-    </div>
+      </Layout>
+    </Router>
   );
 }
-
-// export const MountRemoteApp = () => {
-//   const ref = useRef<HTMLDivElement>(null);
-
-//   // console.log(remote);
-
-//   useEffect(() => {
-//     loadRemote('remote/RemoteApp').then(({ mount }) => {
-//       mount(ref.current!);
-//     });
-//   }, []);
-
-//   return <div ref={ref} />;
-// };

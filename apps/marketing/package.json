@@ -1,11 +1,11 @@
 {
-  "name": "mfe_host",
+  "name": "mfe_marketing",
   "private": true,
   "version": "1.0.0",
   "scripts": {
     "dev": "rsbuild dev --config config/rsbuild.dev.ts",
     "build": "rsbuild build --config config/rsbuild.prod.ts",
-    "serve": "rsbuild preview --port 3000",
+    "serve": "rsbuild preview --port 3001",
     "lint": "eslint --no-ignore 'src/**/*.{js,jsx,ts,tsx}'",
     "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,json,css,md}'",
     "clean": "rm -rf dist"

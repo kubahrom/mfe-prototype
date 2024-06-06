@@ -4,7 +4,7 @@ import { ModuleFederationPlugin } from '@module-federation/enhanced/rspack';
 
 const { publicVars } = loadEnv({ prefixes: ['APP_'] });
 
-const PORT = parseInt(process.env.DEV_PORT || '') || 3000;
+const PORT = parseInt(process.env.DEV_PORT || '') || 3001;
 
 export default defineConfig({
   server: {
@@ -12,35 +12,34 @@ export default defineConfig({
   },
   dev: {
     assetPrefix: `http://localhost:${PORT}`,
-    startUrl: true,
   },
   html: {
     template: './public/index.html',
+    crossorigin: true,
   },
   plugins: [pluginReact()],
   source: {
     define: publicVars,
   },
   tools: {
-    rspack: (config, { appendPlugins }) => {
+    rspack: (_, { appendPlugins }) => {
       appendPlugins([
         new ModuleFederationPlugin({
-          name: 'host',
-          remotes: {
-            marketing: `marketing@http://localhost:${process.env.DEV_MARKETING_PORT || 3001}/mf-manifest.json`,
-            auth: `auth@http://localhost:${process.env.DEV_AUTH_PORT || 3002}/mf-manifest.json`,
+          name: 'marketing',
+          exposes: {
+            './MarketingApp': './src/bootstrap',
           },
           shared: {
             react: {
-              requiredVersion: '^18.2.0',
+              version: '^18.2.0',
               singleton: true,
             },
             'react-dom': {
-              requiredVersion: '^18.2.0',
+              version: '^18.2.0',
               singleton: true,
             },
             'react-router-dom': {
-              requiredVersion: '^5.2.0',
+              version: '^5.2.0',
               singleton: true,
             },
           },
