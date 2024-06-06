@@ -10,7 +10,7 @@ export default defineConfig({
       js: '[name].[contenthash:8].js',
       css: '[name].[contenthash:8].css',
     },
-    assetPrefix: '/remote/',
+    assetPrefix: '/auth/',
   },
   html: {
     template: './public/index.html',
