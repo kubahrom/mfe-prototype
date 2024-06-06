@@ -4,7 +4,7 @@ import { ModuleFederationPlugin } from '@module-federation/enhanced/rspack';
 
 const { publicVars } = loadEnv({ prefixes: ['APP_'] });
 
-const PORT = parseInt(process.env.DEV_PORT || '') || 3001;
+const PORT = parseInt(process.env.DEV_PORT || '') || 3003;
 
 export default defineConfig({
   server: {

@@ -10,6 +10,7 @@ import {
 import App from './App';
 
 let root: ReactDOM.Root | null = null;
+let unmounting = false;
 
 const ROOT_EL_ID = 'marketing_root';
 
@@ -20,10 +21,14 @@ type ConfigOptions = {
 };
 
 // Mount function to mount React app to the specified element in the DOM
-const mount = (
+const mount = async (
   el: HTMLElement,
   { onNavigate, defaultHistory, initialPath }: ConfigOptions,
 ) => {
+  while (unmounting) {
+    await new Promise((resolve) => setTimeout(resolve, 0));
+  }
+
   const history =
     defaultHistory ||
     createMemoryHistory({ initialEntries: [initialPath || ''] });
@@ -69,5 +74,16 @@ if (process.env.NODE_ENV === 'development') {
   }
 }
 
+const unmount = () => {
+  if (root !== null) {
+    unmounting = true;
+    setTimeout(() => {
+      root?.unmount();
+      root = null;
+      unmounting = false;
+    }, 0);
+  }
+};
+
 // Export mount function for host use
-export { mount };
+export { mount, unmount };

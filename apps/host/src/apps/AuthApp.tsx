@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 
 import { useHistory } from 'react-router-dom';
-import { mount } from 'auth/AuthApp';
+import { mount, unmount } from 'auth/AuthApp';
 
 const AuthApp = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -9,7 +9,7 @@ const AuthApp = () => {
 
   useEffect(() => {
     if (!ref.current) return;
-    const { onParentNavigate } = mount(ref.current, {
+    mount(ref.current, {
       initialPath: history.location.pathname,
       onNavigate: ({ pathname: nextPathname }) => {
         const { pathname } = history.location;
@@ -18,9 +18,13 @@ const AuthApp = () => {
           history.push(nextPathname);
         }
       },
+    }).then(({ onParentNavigate }) => {
+      history.listen(onParentNavigate);
     });
 
-    history.listen(onParentNavigate);
+    return () => {
+      unmount();
+    };
   }, [history]);
 
   return <div style={{ border: '1px solid blue' }} ref={ref} />;

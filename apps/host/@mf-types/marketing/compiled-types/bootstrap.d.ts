@@ -4,7 +4,8 @@ type ConfigOptions = {
     defaultHistory?: History;
     initialPath?: string;
 };
-declare const mount: (el: HTMLElement, { onNavigate, defaultHistory, initialPath }: ConfigOptions) => {
+declare const mount: (el: HTMLElement, { onNavigate, defaultHistory, initialPath }: ConfigOptions) => Promise<{
     onParentNavigate: ({ pathname: nextPathname }: Location) => void;
-};
-export { mount };
+}>;
+declare const unmount: () => void;
+export { mount, unmount };
