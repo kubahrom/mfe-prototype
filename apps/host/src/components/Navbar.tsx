@@ -8,7 +8,6 @@ export function Navbar() {
       <Link to={Routes.home}>Home</Link>
       <Link to={Routes.about}>About</Link>
       <Link to="/test">Test</Link>
-      <Link to="/remote">Remote</Link>
       <Link to={Routes.login}>Login</Link>
       <Link to={Routes.signup}>Signup</Link>
     </nav>

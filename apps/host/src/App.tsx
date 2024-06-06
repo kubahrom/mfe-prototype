@@ -7,8 +7,6 @@ import { createBrowserHistory } from 'history';
 const MarketingLazy = lazy(() => import('./apps/MarketingApp'));
 const AuthLazy = lazy(() => import('./apps/AuthApp'));
 
-const RemoteLazy = lazy(() => import('./apps/RemoteApp'));
-
 const history = createBrowserHistory();
 
 export default function App() {
@@ -21,9 +19,6 @@ export default function App() {
               <div style={{ border: '1px solid red' }}>
                 <h1>Test page</h1>
               </div>
-            </Route>
-            <Route path="/remote" exact>
-              <RemoteLazy />
             </Route>
             <Route path="/auth">
               <AuthLazy />

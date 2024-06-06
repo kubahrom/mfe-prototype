@@ -29,7 +29,6 @@ export default defineConfig({
           remotes: {
             marketing: `marketing@http://localhost:${process.env.DEV_MARKETING_PORT || 3001}/mf-manifest.json`,
             auth: `auth@http://localhost:${process.env.DEV_AUTH_PORT || 3002}/mf-manifest.json`,
-            remote: `remote@http://localhost:3003/mf-manifest.json`,
           },
           shared: {
             react: {
