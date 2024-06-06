@@ -16,6 +16,7 @@ export default defineConfig({
   },
   html: {
     template: './public/index.html',
+    crossorigin: 'anonymous',
   },
   plugins: [pluginReact()],
   source: {
