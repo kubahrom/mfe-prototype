@@ -60,6 +60,9 @@ jobs:
           name: dist
           path: apps/auth/dist
 
+      - name: Delete build artifacts
+        run: rm -rf apps/auth/dist
+
       - name: Setup AWS cli
         uses: shinyinc/action-aws-cli@1.1
 
