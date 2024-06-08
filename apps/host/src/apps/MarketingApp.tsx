@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import { mount, unmount } from 'marketing/MarketingApp';
 
 import { useHistory } from 'react-router-dom';
+import { Box, Typography } from '@mui/material';
 
 const MarketingApp = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -28,7 +29,25 @@ const MarketingApp = () => {
     };
   }, [history]);
 
-  return <div style={{ border: '1px solid green' }} ref={ref} />;
+  return (
+    <Box sx={{ p: 1, position: 'relative' }}>
+      <Typography
+        variant="caption"
+        color="primary"
+        sx={{ position: 'absolute', top: 16, right: 16 }}
+      >
+        Marketing MFE
+      </Typography>
+      <Box
+        sx={{
+          border: '1px solid',
+          borderColor: 'primary.main',
+          borderRadius: 2,
+        }}
+        ref={ref}
+      />
+    </Box>
+  );
 };
 
 export default MarketingApp;

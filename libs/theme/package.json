@@ -1,7 +1,7 @@
 {
-  "name": "@libs/shared",
+  "name": "@libs/theme",
   "version": "1.0.0",
-  "description": "",
+  "description": "Shared theme library for MFEs",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -13,5 +13,9 @@
   "license": "ISC",
   "devDependencies": {
     "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "@emotion/cache": "^11.11.0",
+    "@mui/material": "^5.15.19"
   }
 }

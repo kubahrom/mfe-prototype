@@ -1,24 +1,37 @@
 import { History, MemoryHistory } from 'history';
-import { Router, Route, Switch, Link } from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
 import Login from './pages/Login';
-import Home from './pages/Signup';
+import Signup from './pages/Signup';
+import { Box, ThemeProvider } from '@mui/material';
+import { CacheProvider } from '@emotion/react';
+import getTheme from '@libs/theme';
+import NotFound from './pages/404';
 
 type Props = {
   history: MemoryHistory | History;
+  onSignIn?: () => void;
 };
 
-export default function App({ history }: Props) {
+const { theme, cache } = getTheme('auth');
+
+export default function App({ history, onSignIn }: Props) {
   return (
-    <Router history={history}>
-      <Switch>
-        <Route path="/auth/login" component={Login} />
-        <Route path="/auth/signup" component={Home} />
-      </Switch>
-      <div style={{ display: 'flex', gap: 6 }}>
-        <Link to="/auth/login">Login</Link>
-        <Link to="/auth/signup">Signup</Link>
-        <Link to="/">Home</Link>
-      </div>
-    </Router>
+    <CacheProvider value={cache}>
+      <ThemeProvider theme={theme}>
+        <Router history={history}>
+          <Box sx={{ py: 4 }}>
+            <Switch>
+              <Route path="/auth/login" exact>
+                <Login onSignIn={onSignIn} />
+              </Route>
+              <Route path="/auth/signup" exact>
+                <Signup onSignIn={onSignIn} />
+              </Route>
+              <Route path="*" component={NotFound} />
+            </Switch>
+          </Box>
+        </Router>
+      </ThemeProvider>
+    </CacheProvider>
   );
 }

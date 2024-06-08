@@ -1,1 +1,5 @@
-export default function Signup(): import("react/jsx-runtime").JSX.Element;
+type Props = {
+    onSignIn?: () => void;
+};
+export default function Signup({ onSignIn }: Props): import("react/jsx-runtime").JSX.Element;
+export {};

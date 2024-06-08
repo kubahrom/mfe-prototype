@@ -1,5 +1,15 @@
-import React from 'react';
+import { LinearProgress, styled } from '@mui/material';
+
+const LoadingWrapper = styled('div')(({ theme }) => ({
+  marginTop: theme.spacing(1),
+}));
 
 export function LoadingScreen() {
-  return <div>Loading</div>;
+  return (
+    <div>
+      <LoadingWrapper>
+        <LinearProgress />
+      </LoadingWrapper>
+    </div>
+  );
 }
