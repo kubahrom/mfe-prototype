@@ -32,6 +32,10 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Install shared libs
+        run: pnpm run prepare
+        working-directory: ${{ github.workspace }}
+
       - name: TypeScript check
         run: pnpm tsc --noEmit
 

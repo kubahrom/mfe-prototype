@@ -1,4 +1,6 @@
 import { Suspense, lazy } from 'react';
+import { toUp } from '@libs/shared';
+
 import Layout from './components/Layout';
 import { Route, Router, Switch } from 'react-router-dom';
 import { LoadingScreen } from './components/LoadingScreen';
@@ -10,9 +12,12 @@ const AuthLazy = lazy(() => import('./apps/AuthApp'));
 const history = createBrowserHistory();
 
 export default function App() {
+  const test = toUp('shared lib content');
+
   return (
     <Router history={history}>
       <Layout>
+        {test}
         <Suspense fallback={<LoadingScreen />}>
           <Switch>
             <Route path="/test" exact>

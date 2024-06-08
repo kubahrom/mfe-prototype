@@ -4,9 +4,14 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "start": "pnpm run --filter mfe_* --parallel dev",
+    "dev": "pnpm run --filter mfe_* --parallel dev",
     "build": "pnpm run --filter mfe_* build",
+    "prepare": "pnpm run --filter @libs/* --parallel build",
     "serve": "pnpm run --filter mfe_* --parallel serve",
-    "clean": "pnpm run --filter mfe_* --parallel clean"
+    "clean": "pnpm run --parallel clean",
+    "start": "run-s prepare dev"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
   }
 }
