@@ -30,6 +30,7 @@ export default defineConfig({
           remotes: {
             marketing: `marketing@${PRODUCTION_DOMAIN}/marketing/mf-manifest.json`,
             auth: `auth@${PRODUCTION_DOMAIN}/auth/mf-manifest.json`,
+            dashboard: `dashboard@${PRODUCTION_DOMAIN}/dashboard/mf-manifest.json`,
           },
           shared: {
             react: {

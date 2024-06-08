@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 export default function NotFound() {
   useTitle('Stránka nenalezena • MFE');
+
   return (
     <Box
       sx={{

@@ -7,6 +7,7 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { Link as RouterLink } from 'react-router-dom';
+import { useTitle } from '@hooks/useTitle';
 
 type Props = {
   onSignIn?: () => void;
@@ -17,6 +18,8 @@ export default function Signup({ onSignIn }: Props) {
     e.preventDefault();
     onSignIn && onSignIn();
   };
+
+  useTitle('Registrace • MFE');
 
   return (
     <Box

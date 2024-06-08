@@ -1,36 +1,23 @@
-import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import InputBase from '@mui/material/InputBase';
-import SearchIcon from '@mui/icons-material/Search';
-import { Login, Logout, MedicalInformation } from '@mui/icons-material';
+import {
+  Dashboard,
+  Login,
+  Logout,
+  MedicalInformation,
+} from '@mui/icons-material';
 import { Button, Stack } from '@mui/material';
 import { useUser } from '@hooks/useUser';
-import { Link } from 'react-router-dom';
-
-const Search = styled('div')(({ theme }) => ({
-  position: 'relative',
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  '&:hover': {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-}));
-
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: '100%',
-  position: 'absolute',
-  pointerEvents: 'none',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-}));
+import { Link, useLocation } from 'react-router-dom';
+import Search from 'dashboard/Search';
 
 export function Navbar() {
   const { user, logout } = useUser();
+  // Current location
+  const { pathname } = useLocation();
+
   return (
     <AppBar position="sticky">
       <Toolbar>
@@ -56,16 +43,17 @@ export function Navbar() {
 
           <Stack direction="row" spacing={1}>
             {user && (
-              <Search>
-                <SearchIconWrapper>
-                  <SearchIcon />
-                </SearchIconWrapper>
-                <InputBase
-                  placeholder="Hledat"
-                  inputProps={{ 'aria-label': 'hledat' }}
-                  sx={{ color: 'inherit', p: 0.5, pl: 6 }}
-                />
-              </Search>
+              <>
+                {pathname === '/dashboard' && <Search />}
+                <Button
+                  component={Link}
+                  to="/dashboard"
+                  color="inherit"
+                  sx={{ minWidth: 'auto' }}
+                >
+                  <Dashboard fontSize="small" />
+                </Button>
+              </>
             )}
 
             {user ? (

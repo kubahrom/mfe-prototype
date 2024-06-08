@@ -7,6 +7,7 @@ import { useUser } from '@hooks/useUser';
 
 const MarketingLazy = lazy(() => import('./apps/MarketingApp'));
 const AuthLazy = lazy(() => import('./apps/AuthApp'));
+const DashboardLazy = lazy(() => import('./apps/DashboardApp'));
 
 const history = createBrowserHistory();
 
@@ -20,6 +21,9 @@ export default function App() {
             <Switch>
               <Route path="/auth">
                 {user ? <Redirect to="/about" /> : <AuthLazy />}
+              </Route>
+              <Route path="/dashboard">
+                {!user ? <Redirect to="/auth/login" /> : <DashboardLazy />}
               </Route>
               <Route path="/">
                 <MarketingLazy />

@@ -4,7 +4,7 @@ import { ModuleFederationPlugin } from '@module-federation/enhanced/rspack';
 
 const { publicVars } = loadEnv({ prefixes: ['APP_'] });
 
-const PORT = parseInt(process.env.DEV_PORT || '') || 3001;
+const PORT = parseInt(process.env.DEV_PORT || '') || 3003;
 
 export default defineConfig({
   server: {
@@ -21,13 +21,21 @@ export default defineConfig({
   source: {
     define: publicVars,
   },
+  output: {
+    filename: {
+      js: '[name].[contenthash:8].js',
+      css: '[name].[contenthash:8].css',
+    },
+    assetPrefix: '/dashboard/',
+  },
   tools: {
     rspack: (_, { appendPlugins }) => {
       appendPlugins([
         new ModuleFederationPlugin({
-          name: 'marketing',
+          name: 'dashboard',
           exposes: {
-            './MarketingApp': './src/bootstrap',
+            './DashboardApp': './src/bootstrap',
+            './Search': './src/Search',
           },
           shared: {
             react: {

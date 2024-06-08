@@ -4,13 +4,14 @@ import { ModuleFederationPlugin } from '@module-federation/enhanced/rspack';
 
 const { publicVars } = loadEnv({ prefixes: ['APP_'] });
 
+const PORT = parseInt(process.env.DEV_PORT || '') || 3002;
+
 export default defineConfig({
-  output: {
-    filename: {
-      js: '[name].[contenthash:8].js',
-      css: '[name].[contenthash:8].css',
-    },
-    assetPrefix: '/marketing/',
+  server: {
+    port: PORT,
+  },
+  dev: {
+    assetPrefix: `http://localhost:${PORT}`,
   },
   html: {
     template: './public/index.html',
@@ -20,13 +21,20 @@ export default defineConfig({
   source: {
     define: publicVars,
   },
+  output: {
+    filename: {
+      js: '[name].[contenthash:8].js',
+      css: '[name].[contenthash:8].css',
+    },
+    assetPrefix: '/auth/',
+  },
   tools: {
     rspack: (_, { appendPlugins }) => {
       appendPlugins([
         new ModuleFederationPlugin({
-          name: 'marketing',
+          name: 'auth',
           exposes: {
-            './MarketingApp': './src/bootstrap',
+            './AuthApp': './src/bootstrap',
           },
           shared: {
             react: {

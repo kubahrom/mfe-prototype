@@ -63,6 +63,88 @@ importers:
       '@types/react-dom':
         specifier: ^18.2.25
         version: 18.3.0
+      '@types/react-helmet':
+        specifier: ^6.1.11
+        version: 6.1.11
+      '@types/react-router-dom':
+        specifier: ^5.3.3
+        version: 5.3.3
+      '@typescript-eslint/eslint-plugin':
+        specifier: ^7.2.0
+        version: 7.12.0(@typescript-eslint/parser@7.12.0(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0)(typescript@5.4.5)
+      '@typescript-eslint/parser':
+        specifier: ^7.2.0
+        version: 7.12.0(eslint@8.57.0)(typescript@5.4.5)
+      eslint:
+        specifier: ^8.57.0
+        version: 8.57.0
+      eslint-plugin-react-hooks:
+        specifier: ^4.6.0
+        version: 4.6.2(eslint@8.57.0)
+      eslint-plugin-react-refresh:
+        specifier: ^0.4.6
+        version: 0.4.7(eslint@8.57.0)
+      prettier:
+        specifier: ^3.3.0
+        version: 3.3.1
+      typescript:
+        specifier: ^5.4.5
+        version: 5.4.5
+
+  apps/dashboard:
+    dependencies:
+      '@emotion/react':
+        specifier: ^11.11.4
+        version: 11.11.4(@types/react@18.3.3)(react@18.3.1)
+      '@emotion/styled':
+        specifier: ^11.11.5
+        version: 11.11.5(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react@18.3.1)
+      '@libs/theme':
+        specifier: workspace:^
+        version: link:../../libs/theme
+      '@module-federation/enhanced':
+        specifier: ^0.1.15
+        version: 0.1.18(typescript@5.4.5)
+      '@mui/icons-material':
+        specifier: ^5.15.19
+        version: 5.15.19(@mui/material@5.15.19(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.3)(react@18.3.1)
+      '@mui/material':
+        specifier: ^5.15.19
+        version: 5.15.19(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      history:
+        specifier: ^4.10.1
+        version: 4.10.1
+      react:
+        specifier: ^18.2.0
+        version: 18.3.1
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.3.1(react@18.3.1)
+      react-router-dom:
+        specifier: ^5.2.0
+        version: 5.3.4(react@18.3.1)
+    devDependencies:
+      '@rsbuild/core':
+        specifier: ^0.6.3
+        version: 0.6.15
+      '@rsbuild/plugin-react':
+        specifier: ^0.6.3
+        version: 0.6.15(@rsbuild/core@0.6.15)(@swc/helpers@0.5.3)
+      '@types/history':
+        specifier: ^4.7.11
+        version: 4.7.11
+      '@types/node':
+        specifier: ^20.14.0
+        version: 20.14.2
+      '@types/react':
+        specifier: ^18.2.79
+        version: 18.3.3
+      '@types/react-dom':
+        specifier: ^18.2.25
+        version: 18.3.0
+      '@types/react-helmet':
+        specifier: ^6.1.11
+        version: 6.1.11
       '@types/react-router-dom':
         specifier: ^5.3.3
         version: 5.3.3
@@ -679,6 +761,9 @@ packages:
 
   '@types/react-dom@18.3.0':
     resolution: {integrity: sha512-EhwApuTmMBmXuFOikhQLIBUn6uFg81SwLMOAUgodJF14SOBOCMdU04gDoYi0WOJJHD144TL32z4yDqCW3dnkQg==}
+
+  '@types/react-helmet@6.1.11':
+    resolution: {integrity: sha512-0QcdGLddTERotCXo3VFlUSWO3ztraw8nZ6e3zJSgG7apwV5xt+pJUS8ewPBqT4NYB1optGLprNQzFleIY84u/g==}
 
   '@types/react-router-dom@5.3.3':
     resolution: {integrity: sha512-kpqnYK4wcdm5UaWI3fLcELopqLrHgLqNsdpHauzlQktfkHL3npOSwtj1Uz9oKBAzs7lFtVkV8j83voAz2D8fhw==}
@@ -2647,6 +2732,10 @@ snapshots:
   '@types/prop-types@15.7.12': {}
 
   '@types/react-dom@18.3.0':
+    dependencies:
+      '@types/react': 18.3.3
+
+  '@types/react-helmet@6.1.11':
     dependencies:
       '@types/react': 18.3.3
 
