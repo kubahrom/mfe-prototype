@@ -19,7 +19,7 @@ export default function App({ history, onSignIn }: Props) {
     <CacheProvider value={cache}>
       <ThemeProvider theme={theme}>
         <Router history={history}>
-          <Box sx={{ py: 4 }}>
+          <Box sx={{ py: 5, mx: 1 }}>
             <Switch>
               <Route path="/auth/login" exact>
                 <Login onSignIn={onSignIn} />
