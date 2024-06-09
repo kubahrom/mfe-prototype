@@ -8,6 +8,7 @@ import {
 } from 'history';
 
 import App from './App';
+import { UserIdStoreProvider } from './store/UserIdStore';
 
 let root: ReactDOM.Root | null = null;
 let unmounting = false;
@@ -18,12 +19,13 @@ type ConfigOptions = {
   onNavigate?: (location: Location) => void;
   defaultHistory?: History;
   initialPath?: string;
+  userId?: string;
 };
 
 // Mount function to mount React app to the specified element in the DOM
 const mount = async (
   el: HTMLElement,
-  { onNavigate, defaultHistory, initialPath }: ConfigOptions,
+  { onNavigate, defaultHistory, initialPath, userId }: ConfigOptions,
 ) => {
   while (unmounting) {
     await new Promise((resolve) => setTimeout(resolve, 0));
@@ -42,7 +44,9 @@ const mount = async (
   }
   root.render(
     <React.StrictMode>
-      <App history={history} />
+      <UserIdStoreProvider userId={userId}>
+        <App history={history} />
+      </UserIdStoreProvider>
     </React.StrictMode>,
   );
 

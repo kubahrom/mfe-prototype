@@ -40,6 +40,18 @@ function Search() {
     window.dispatchEvent(customEvent);
   }, [debouncedValue]);
 
+  const handleReset = () => {
+    setValue('');
+  };
+
+  useEffect(() => {
+    window.addEventListener('search-reset', handleReset as EventListener);
+
+    return () => {
+      window.removeEventListener('search-reset', handleReset as EventListener);
+    };
+  }, []);
+
   return (
     <SearchWrapper>
       <Typography

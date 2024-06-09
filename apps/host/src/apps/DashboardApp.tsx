@@ -3,10 +3,12 @@ import { useEffect, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import { mount, unmount } from 'dashboard/DashboardApp';
 import { Box, Typography } from '@mui/material';
+import { useUser } from '@hooks/useUser';
 
 const DashboardApp = () => {
   const ref = useRef<HTMLDivElement>(null);
   const history = useHistory();
+  const { user } = useUser();
 
   useEffect(() => {
     if (!ref.current) return;
@@ -19,6 +21,7 @@ const DashboardApp = () => {
           history.push(nextPathname);
         }
       },
+      userId: user?.uid || undefined,
     }).then(({ onParentNavigate }) => {
       history.listen(onParentNavigate);
     });
@@ -26,14 +29,14 @@ const DashboardApp = () => {
     return () => {
       unmount();
     };
-  }, [history]);
+  }, [history, user?.uid]);
 
   return (
     <Box sx={{ p: 1, position: 'relative' }}>
       <Typography
         variant="caption"
         color="primary"
-        sx={{ position: 'absolute', top: 16, right: 16 }}
+        sx={{ position: 'absolute', top: 16, right: 16, fontSize: '1rem' }}
       >
         Dashboard MFE
       </Typography>

@@ -13,7 +13,9 @@
     "useDefineForClassFields": true,
     "paths": {
       "*": ["./@mf-types/*"],
-      "@hooks/*": ["./src/hooks/*"]
+      "@components/*": ["./src/components/*"],
+      "@hooks/*": ["./src/hooks/*"],
+      "@store/*": ["./src/store/*"]
     }
   },
   "include": ["src", "./@mf-types"]

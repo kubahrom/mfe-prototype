@@ -73,9 +73,7 @@ const useGlobalStore = () => {
   const context = useContext(GlobalStoreContext);
 
   if (context === undefined) {
-    throw new Error(
-      'useGlobalStore must be used within a GloabalStoreProvider',
-    );
+    throw new Error('useGlobalStore must be used within a GlobalStoreProvider');
   }
 
   return context;

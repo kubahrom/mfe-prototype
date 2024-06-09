@@ -2,12 +2,7 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import {
-  Dashboard,
-  Login,
-  Logout,
-  MedicalInformation,
-} from '@mui/icons-material';
+import { Dashboard, FoodBank, Login, Logout } from '@mui/icons-material';
 import { Button, Stack } from '@mui/material';
 import { useUser } from '@hooks/useUser';
 import { Link, useLocation } from 'react-router-dom';
@@ -35,7 +30,7 @@ export function Navbar() {
             alignItems="center"
             sx={{ color: 'inherit', textDecoration: 'none' }}
           >
-            <MedicalInformation sx={{ mr: 1, mb: 0.5 }} />
+            <FoodBank sx={{ mr: 1, mb: 0.5 }} />
             <Typography variant="h6" noWrap>
               MFE
             </Typography>
@@ -66,9 +61,25 @@ export function Navbar() {
                   component={Link}
                   to="/dashboard"
                   color="inherit"
-                  sx={{ minWidth: 'auto' }}
+                  sx={{
+                    display: 'flex',
+                    gap: 1,
+                    minWidth: 'auto',
+                    flexShrink: 0,
+                  }}
                 >
                   <Dashboard fontSize="small" />
+                  <Box
+                    component="span"
+                    sx={{
+                      display: {
+                        xs: 'none',
+                        md: 'block',
+                      },
+                    }}
+                  >
+                    Dashboard
+                  </Box>
                 </Button>
               </>
             )}
