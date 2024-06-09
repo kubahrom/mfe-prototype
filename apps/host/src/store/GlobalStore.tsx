@@ -1,22 +1,33 @@
+import { observeAuthState } from 'auth/methods';
 import {
   Dispatch,
   PropsWithChildren,
   SetStateAction,
   createContext,
   useContext,
+  useEffect,
   useMemo,
   useState,
 } from 'react';
 
-const initialState = {
-  user: false,
+type User = {
+  uid: string;
+  email: string;
 };
-type GlobalStoreType = typeof initialState;
+type GlobalStoreType = {
+  user: User | null;
+  init: boolean;
+};
 
 type GlobalStoreContextType = [
   state: GlobalStoreType,
   setState: Dispatch<SetStateAction<GlobalStoreType>>,
 ];
+
+const initialState: GlobalStoreType = {
+  user: null,
+  init: false,
+};
 
 const GlobalStoreContext = createContext<GlobalStoreContextType>([
   initialState,
@@ -25,6 +36,26 @@ const GlobalStoreContext = createContext<GlobalStoreContextType>([
 
 const GlobalStoreProvider = ({ children }: PropsWithChildren) => {
   const [state, setState] = useState(initialState);
+
+  useEffect(() => {
+    const unsubscribe = observeAuthState((user) => {
+      if (user) {
+        setState({
+          init: true,
+          user: {
+            uid: user.uid,
+            email: user.email,
+          },
+        });
+      } else {
+        setState({
+          init: true,
+          user: null,
+        });
+      }
+    });
+    return () => unsubscribe();
+  }, []);
 
   const memoizedValue = useMemo(
     () => [state, setState] as GlobalStoreContextType,

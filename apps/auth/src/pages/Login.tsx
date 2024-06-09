@@ -1,4 +1,3 @@
-import { FormEvent } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -8,16 +7,17 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { Link as RouterLink } from 'react-router-dom';
 import { useTitle } from '@hooks/useTitle';
+import { useLogin } from '@hooks/useLogin';
 
-type Props = {
-  onSignIn?: () => void;
-};
-
-export default function Login({ onSignIn }: Props) {
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    onSignIn && onSignIn();
-  };
+export default function Login() {
+  const {
+    methods: {
+      register,
+      formState: { errors },
+    },
+    onSubmit,
+    isLoading,
+  } = useLogin();
 
   useTitle('Přihlášení • MFE');
 
@@ -37,30 +37,44 @@ export default function Login({ onSignIn }: Props) {
       </Typography>
       <Box
         component="form"
-        onSubmit={handleSubmit}
-        sx={{ mt: 1, maxWidth: 500 }}
+        onSubmit={onSubmit}
+        sx={{ mt: 1, maxWidth: 500, width: '100%' }}
       >
         <TextField
           margin="normal"
           fullWidth
           id="email"
           label="E-mail"
-          name="email"
+          {...register('email')}
           autoFocus
+          error={!!errors.email}
+          helperText={errors.email?.message}
         />
         <TextField
           margin="normal"
           fullWidth
-          name="password"
+          {...register('password')}
           label="Heslo"
           type="password"
           id="password"
+          error={!!errors.password}
+          helperText={errors.password?.message}
         />
+        {errors.root && (
+          <Typography
+            color="error"
+            variant="body1"
+            sx={{ textAlign: 'center' }}
+          >
+            {errors.root.message}
+          </Typography>
+        )}
         <Button
           type="submit"
           fullWidth
           variant="contained"
           sx={{ mt: 3, mb: 2 }}
+          disabled={isLoading}
         >
           Přihlásit se
         </Button>

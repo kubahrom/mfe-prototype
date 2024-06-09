@@ -41,10 +41,27 @@ export function Navbar() {
             </Typography>
           </Stack>
 
-          <Stack direction="row" spacing={1}>
+          <Stack
+            direction="row"
+            spacing={1}
+            justifyContent="flex-end"
+            sx={{ flexGrow: 1 }}
+          >
             {user && (
               <>
-                {pathname === '/dashboard' && <Search />}
+                {pathname === '/dashboard' && (
+                  <Box
+                    style={{
+                      margin: 'auto',
+                    }}
+                    sx={{
+                      width: { xs: '100%' },
+                      maxWidth: 568,
+                    }}
+                  >
+                    <Search />
+                  </Box>
+                )}
                 <Button
                   component={Link}
                   to="/dashboard"
@@ -60,7 +77,12 @@ export function Navbar() {
               <Button
                 onClick={logout}
                 color="inherit"
-                sx={{ display: 'flex', gap: 1, minWidth: 'auto' }}
+                sx={{
+                  display: 'flex',
+                  gap: 1,
+                  minWidth: 'auto',
+                  flexShrink: 0,
+                }}
               >
                 <Logout fontSize="small" />
                 <Box

@@ -2,8 +2,9 @@ import Layout from './components/Layout';
 import { createBrowserHistory } from 'history';
 import { Redirect, Route, Router, Switch } from 'react-router-dom';
 import { Suspense, lazy } from 'react';
-import { LoadingScreen } from './components/LoadingScreen';
+import { Loading } from './components/Loading';
 import { useUser } from '@hooks/useUser';
+import { LoadingScreen } from './components/LoadingScreen';
 
 const MarketingLazy = lazy(() => import('./apps/MarketingApp'));
 const AuthLazy = lazy(() => import('./apps/AuthApp'));
@@ -15,12 +16,13 @@ export default function App() {
   const { user } = useUser();
   return (
     <>
+      <LoadingScreen />
       <Router history={history}>
         <Layout>
-          <Suspense fallback={<LoadingScreen />}>
+          <Suspense fallback={<Loading />}>
             <Switch>
               <Route path="/auth">
-                {user ? <Redirect to="/about" /> : <AuthLazy />}
+                {user ? <Redirect to="/dashboard" /> : <AuthLazy />}
               </Route>
               <Route path="/dashboard">
                 {!user ? <Redirect to="/auth/login" /> : <DashboardLazy />}

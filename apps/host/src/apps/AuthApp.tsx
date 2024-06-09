@@ -3,12 +3,10 @@ import { useEffect, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import { mount, unmount } from 'auth/AuthApp';
 import { Box, Typography } from '@mui/material';
-import { useUser } from '@hooks/useUser';
 
 const AuthApp = () => {
   const ref = useRef<HTMLDivElement>(null);
   const history = useHistory();
-  const { login } = useUser();
 
   useEffect(() => {
     if (!ref.current) return;
@@ -21,10 +19,6 @@ const AuthApp = () => {
           history.push(nextPathname);
         }
       },
-      onSignIn: () => {
-        login();
-        history.push('/dashboard');
-      },
     }).then(({ onParentNavigate }) => {
       history.listen(onParentNavigate);
     });
@@ -32,7 +26,7 @@ const AuthApp = () => {
     return () => {
       unmount();
     };
-  }, [history, login]);
+  }, [history]);
 
   return (
     <Box sx={{ p: 1, position: 'relative' }}>

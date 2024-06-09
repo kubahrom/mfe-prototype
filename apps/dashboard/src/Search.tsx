@@ -3,6 +3,7 @@ import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import { ChangeEvent, useEffect, useState } from 'react';
 import { useDebounce } from '@hooks/useDebounce';
+import { Typography } from '@mui/material';
 
 const SearchWrapper = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -41,6 +42,17 @@ function Search() {
 
   return (
     <SearchWrapper>
+      <Typography
+        variant="caption"
+        color="white"
+        sx={{
+          position: 'absolute',
+          top: 4,
+          right: 4,
+        }}
+      >
+        Dashboard MFE
+      </Typography>
       <SearchIconWrapper>
         <SearchIcon />
       </SearchIconWrapper>
@@ -49,7 +61,12 @@ function Search() {
         value={value}
         onChange={handleSearchChange}
         inputProps={{ 'aria-label': 'hledat' }}
-        sx={{ color: 'inherit', p: 0.5, pl: 6 }}
+        sx={{
+          color: 'inherit',
+          p: 0.5,
+          pl: 6,
+          width: '100%',
+        }}
       />
     </SearchWrapper>
   );

@@ -9,12 +9,11 @@ import NotFound from './pages/404';
 
 type Props = {
   history: MemoryHistory | History;
-  onSignIn?: () => void;
 };
 
 const { theme, cache } = getTheme('auth');
 
-export default function App({ history, onSignIn }: Props) {
+export default function App({ history }: Props) {
   return (
     <CacheProvider value={cache}>
       <ThemeProvider theme={theme}>
@@ -22,10 +21,10 @@ export default function App({ history, onSignIn }: Props) {
           <Box sx={{ py: 5, mx: 1 }}>
             <Switch>
               <Route path="/auth/login" exact>
-                <Login onSignIn={onSignIn} />
+                <Login />
               </Route>
               <Route path="/auth/signup" exact>
-                <Signup onSignIn={onSignIn} />
+                <Signup />
               </Route>
               <Route path="*" component={NotFound} />
             </Switch>

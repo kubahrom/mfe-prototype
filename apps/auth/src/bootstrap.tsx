@@ -18,13 +18,12 @@ type ConfigOptions = {
   onNavigate?: (location: Location) => void;
   defaultHistory?: History;
   initialPath?: string;
-  onSignIn?: () => void;
 };
 
 // Mount function to mount React app to the specified element in the DOM
 const mount = async (
   el: HTMLElement,
-  { onNavigate, defaultHistory, initialPath, onSignIn }: ConfigOptions,
+  { onNavigate, defaultHistory, initialPath }: ConfigOptions,
 ) => {
   while (unmounting) {
     await new Promise((resolve) => setTimeout(resolve, 0));
@@ -43,7 +42,7 @@ const mount = async (
   }
   root.render(
     <React.StrictMode>
-      <App history={history} onSignIn={onSignIn} />
+      <App history={history} />
     </React.StrictMode>,
   );
 

@@ -15,6 +15,12 @@ const items = [
 export default function Dashboard() {
   const [search, setSearch] = useState('');
 
+  // useEffect(() => {
+  //   getCourses().then((data) => {
+  //     console.log(data);
+  //   });
+  // });
+
   const handleSearch = (e: Event) => {
     const customEvent = e as CustomEvent<string>;
     setSearch(customEvent.detail);
@@ -49,15 +55,12 @@ export default function Dashboard() {
 
 // const getCourses = async () => {
 //   try {
-//     const response = await fetch(
-//       'https://akreditace.mzcr.cz/rest/certifikovane-kurzy',
-//       {
-//         method: 'GET',
-//         headers: {
-//           'Content-Type': 'application/json',
-//         },
+//     const response = await fetch('https://dummyjson.com/products', {
+//       method: 'GET',
+//       headers: {
+//         'Content-Type': 'application/json',
 //       },
-//     );
+//     });
 //     const data = await response.json();
 //     return data;
 //   } catch (e) {

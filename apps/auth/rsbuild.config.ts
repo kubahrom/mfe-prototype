@@ -35,6 +35,7 @@ export default defineConfig({
           name: 'auth',
           exposes: {
             './AuthApp': './src/bootstrap',
+            './methods': './src/firebaseAuth/exportedAuth',
           },
           shared: {
             react: {
