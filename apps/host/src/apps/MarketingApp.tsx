@@ -34,7 +34,7 @@ const MarketingApp = () => {
       <Typography
         variant="caption"
         color="primary"
-        sx={{ position: 'absolute', top: 16, right: 16 }}
+        sx={{ position: 'absolute', top: 16, right: 16, fontSize: '1rem' }}
       >
         Marketing MFE
       </Typography>

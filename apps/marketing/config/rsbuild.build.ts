@@ -4,15 +4,9 @@ import { ModuleFederationPlugin } from '@module-federation/enhanced/rspack';
 
 const { publicVars } = loadEnv({ prefixes: ['APP_'] });
 
-const PORT = parseInt(process.env.DEV_PORT || '') || 3003;
+const PRODUCTION_DOMAIN = process.env.PRODUCTION_DOMAIN;
 
 export default defineConfig({
-  server: {
-    port: PORT,
-  },
-  dev: {
-    assetPrefix: `http://localhost:${PORT}`,
-  },
   html: {
     template: './public/index.html',
     crossorigin: 'anonymous',
@@ -21,22 +15,16 @@ export default defineConfig({
   source: {
     define: publicVars,
   },
-  output: {
-    filename: {
-      js: '[name].[contenthash:8].js',
-      css: '[name].[contenthash:8].css',
-    },
-    assetPrefix: '/dashboard/',
-  },
   tools: {
     rspack: (_, { appendPlugins }) => {
       appendPlugins([
         new ModuleFederationPlugin({
-          name: 'dashboard',
+          name: 'marketing',
           exposes: {
-            './DashboardApp': './src/bootstrap',
-            './Search': './src/Search',
-            './RecipeTags': './src/RecipeTags',
+            './MarketingApp': './src/bootstrap',
+          },
+          remotes: {
+            dashboard: `dashboard@${PRODUCTION_DOMAIN}/dashboard/mf-manifest.json`,
           },
           shared: {
             react: {

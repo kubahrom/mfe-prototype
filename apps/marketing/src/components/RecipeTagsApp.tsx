@@ -1,27 +1,16 @@
 import { useEffect, useRef } from 'react';
 
 import { useHistory } from 'react-router-dom';
-import { mount, unmount } from 'auth/AuthApp';
+import { mount, unmount } from 'dashboard/RecipeTags';
 import { Box, Typography } from '@mui/material';
 
-const AuthApp = () => {
+const RecipeTagsApp = () => {
   const ref = useRef<HTMLDivElement>(null);
   const history = useHistory();
 
   useEffect(() => {
     if (!ref.current) return;
-    mount(ref.current, {
-      initialPath: history.location.pathname,
-      onNavigate: ({ pathname: nextPathname }) => {
-        const { pathname } = history.location;
-
-        if (pathname !== nextPathname) {
-          history.push(nextPathname);
-        }
-      },
-    }).then(({ onParentNavigate }) => {
-      history.listen(onParentNavigate);
-    });
+    mount(ref.current);
 
     return () => {
       unmount();
@@ -35,7 +24,7 @@ const AuthApp = () => {
         color="primary"
         sx={{ position: 'absolute', top: 16, right: 16, fontSize: '1rem' }}
       >
-        Auth MFE
+        Dashboard MFE
       </Typography>
       <Box
         sx={{
@@ -49,4 +38,4 @@ const AuthApp = () => {
   );
 };
 
-export default AuthApp;
+export default RecipeTagsApp;

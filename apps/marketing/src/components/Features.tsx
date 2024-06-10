@@ -8,6 +8,13 @@ import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { Dashboard, Lock, Web, WebAsset } from '@mui/icons-material';
+import { Link as RouterLink } from 'react-router-dom';
+import { Link } from '@mui/material';
+
+import mfeHostImage from '../assets/images/mfe-host.png';
+import mfeMarketingImage from '../assets/images/mfe-marketing.png';
+import mfeAuthImage from '../assets/images/mfe-auth.png';
+import mfeDashboardImage from '../assets/images/mfe-dashboard.png';
 
 const items = [
   {
@@ -15,28 +22,28 @@ const items = [
     title: 'Host',
     description:
       'Host is the main shell microfrontend, which is responsible for loading and displaying the other microfrontends.',
-    image: 'url("/static/images/templates/templates-images/dash-light.png")',
+    image: `url(${mfeHostImage})`,
   },
   {
     icon: <WebAsset />,
     title: 'Marketing',
     description:
       'Marketing microfrontend is responsible for display all static pages and marketing content.',
-    image: 'url("/static/images/templates/templates-images/dash-light.png")',
+    image: `url(${mfeMarketingImage})`,
   },
   {
     icon: <Lock />,
     title: 'Auth',
     description:
       'Auth microfrontend is responsible for handling login and signup functionalit, with providing needed API for checking for user state.',
-    image: 'url("/static/images/templates/templates-images/mobile-light.png")',
+    image: `url(${mfeAuthImage})`,
   },
   {
     icon: <Dashboard />,
     title: 'Dashboard',
     description:
       'Dashboard microfrontend is prototype of real application which is in this case managing recipes of authenticated user.',
-    image: 'url("/static/images/templates/templates-images/devices-light.png")',
+    image: `url(${mfeDashboardImage})`,
   },
 ];
 
@@ -78,18 +85,9 @@ export default function Features() {
                 label={title}
                 onClick={() => handleItemClick(index)}
                 sx={{
-                  borderColor: (theme) => {
-                    if (theme.palette.mode === 'light') {
-                      return selectedItemIndex === index ? 'primary.light' : '';
-                    }
-                    return selectedItemIndex === index ? 'primary.light' : '';
-                  },
-                  background: (theme) => {
-                    if (theme.palette.mode === 'light') {
-                      return selectedItemIndex === index ? 'none' : '';
-                    }
-                    return selectedItemIndex === index ? 'none' : '';
-                  },
+                  borderColor:
+                    selectedItemIndex === index ? 'primary.light' : '',
+                  background: selectedItemIndex === index ? 'none' : '',
                   backgroundColor:
                     selectedItemIndex === index ? 'primary.main' : '',
                   '& .MuiChip-label': {
@@ -110,8 +108,9 @@ export default function Features() {
             <Box
               sx={{
                 backgroundImage: items[selectedItemIndex].image,
-                backgroundSize: 'cover',
+                backgroundSize: 'contain',
                 backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
                 minHeight: 280,
               }}
             />
@@ -129,6 +128,17 @@ export default function Features() {
                 sx={{ my: 0.5 }}
               >
                 {selectedFeature.description}
+                {selectedFeature.title === 'Marketing' && (
+                  <Link
+                    color="primary"
+                    variant="body2"
+                    component={RouterLink}
+                    to="/about"
+                    fontWeight="bold"
+                  >
+                    About static page
+                  </Link>
+                )}
               </Typography>
             </Box>
           </Box>
@@ -196,6 +206,17 @@ export default function Features() {
                       sx={{ my: 0.5 }}
                     >
                       {description}
+                      {title === 'Marketing' && (
+                        <Link
+                          color="primary"
+                          variant="body2"
+                          component={RouterLink}
+                          to="/about"
+                          fontWeight="bold"
+                        >
+                          About static page
+                        </Link>
+                      )}
                     </Typography>
                   </Box>
                 </Box>
@@ -221,10 +242,12 @@ export default function Features() {
             <Box
               sx={{
                 m: 'auto',
-                width: 420,
+                width: '100%',
                 height: 500,
                 backgroundSize: 'contain',
                 backgroundImage: items[selectedItemIndex].image,
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'center',
               }}
             />
           </Card>

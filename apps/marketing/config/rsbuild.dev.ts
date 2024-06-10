@@ -21,13 +21,6 @@ export default defineConfig({
   source: {
     define: publicVars,
   },
-  output: {
-    filename: {
-      js: '[name].[contenthash:8].js',
-      css: '[name].[contenthash:8].css',
-    },
-    assetPrefix: '/marketing/',
-  },
   tools: {
     rspack: (_, { appendPlugins }) => {
       appendPlugins([
@@ -35,6 +28,9 @@ export default defineConfig({
           name: 'marketing',
           exposes: {
             './MarketingApp': './src/bootstrap',
+          },
+          remotes: {
+            dashboard: `dashboard@http://localhost:${process.env.DEV_DASHBOARD_PORT || 3003}/mf-manifest.json`,
           },
           shared: {
             react: {
