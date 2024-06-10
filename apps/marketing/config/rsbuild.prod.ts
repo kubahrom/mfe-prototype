@@ -7,6 +7,13 @@ const { publicVars } = loadEnv({ prefixes: ['APP_'] });
 const PRODUCTION_DOMAIN = process.env.PRODUCTION_DOMAIN;
 
 export default defineConfig({
+  output: {
+    filename: {
+      js: '[name].[contenthash:8].js',
+      css: '[name].[contenthash:8].css',
+    },
+    assetPrefix: '/marketing/',
+  },
   html: {
     template: './public/index.html',
     crossorigin: 'anonymous',
