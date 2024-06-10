@@ -1,6 +1,6 @@
 import { Loading } from '@components/Loading';
 import { Container, Typography } from '@mui/material';
-import React, { Suspense, lazy } from 'react';
+import { Suspense, lazy } from 'react';
 
 const LazyRecipeTagsApp = lazy(() => import('../components/RecipeTagsApp'));
 
