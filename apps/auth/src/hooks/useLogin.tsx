@@ -29,13 +29,13 @@ export const useLogin = () => {
 const schema = z.object({
   email: z
     .string()
-    .min(1, 'Toto pole je povinné')
-    .email('Neplatný formát e-mailu')
-    .max(255, 'Příliš dlouhý e-mail'),
+    .min(1, 'This field is required')
+    .email('Invalid e-mail address')
+    .max(255, 'Too long e-mail address'),
   password: z
     .string()
-    .min(1, 'Toto pole je povinné')
-    .max(1024, 'Příliš dlouhé heslo'),
+    .min(1, 'This field is required')
+    .max(1024, 'Too long password'),
 });
 
 type FormValues = z.infer<typeof schema>;

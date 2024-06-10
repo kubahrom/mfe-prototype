@@ -17,7 +17,7 @@ export default function NotFound() {
       <Box sx={{ display: 'grid', justifyItems: 'center' }}>
         <ErrorOutline color="primary" sx={{ fontSize: '3rem' }} />
         <Typography variant="h4" align="center">
-          404 | Page not foud
+          404 | Page not found
         </Typography>
         <Button
           variant="contained"

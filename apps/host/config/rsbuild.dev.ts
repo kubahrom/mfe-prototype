@@ -36,6 +36,7 @@ export default defineConfig({
             react: {
               requiredVersion: '^18.2.0',
               singleton: true,
+              strictVersion: false,
             },
             'react-dom': {
               requiredVersion: '^18.2.0',

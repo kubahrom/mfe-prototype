@@ -11,8 +11,10 @@
     "resolveJsonModule": true,
     "moduleResolution": "bundler",
     "useDefineForClassFields": true,
-    "paths":{
-      "*": ["./@mf-types/*"]
+    "paths": {
+      "*": ["./@mf-types/*"],
+      "@hooks/*": ["./src/hooks/*"],
+      "@components/*": ["./src/components/*"]
     }
   },
   "include": ["src", "./@mf-types"]

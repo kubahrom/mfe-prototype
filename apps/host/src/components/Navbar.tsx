@@ -105,7 +105,7 @@ export function Navbar() {
                     },
                   }}
                 >
-                  Odhlásit se
+                  Logout
                 </Box>
               </Button>
             ) : (
@@ -115,7 +115,7 @@ export function Navbar() {
                 color="inherit"
                 startIcon={<Login />}
               >
-                Přihlásit se
+                Login
               </Button>
             )}
           </Stack>

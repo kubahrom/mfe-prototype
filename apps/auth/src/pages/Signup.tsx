@@ -19,7 +19,7 @@ export default function Signup() {
     isLoading,
   } = useSignup();
 
-  useTitle('Registrace • MFE');
+  useTitle('Signup • MFE');
 
   return (
     <Box
@@ -33,7 +33,7 @@ export default function Signup() {
         <LockOutlinedIcon />
       </Avatar>
       <Typography component="h1" variant="h5">
-        Zaregistrovat se
+        Sign up
       </Typography>
       <Box
         component="form"
@@ -54,7 +54,7 @@ export default function Signup() {
           margin="normal"
           fullWidth
           {...register('password')}
-          label="Heslo"
+          label="Password"
           type="password"
           id="password"
           error={!!errors.password}
@@ -64,7 +64,7 @@ export default function Signup() {
           margin="normal"
           fullWidth
           {...register('passwordConfirmation')}
-          label="Heslo znovu"
+          label="Password confirmation"
           type="password"
           id="password_confirmation"
           error={!!errors.passwordConfirmation}
@@ -86,11 +86,11 @@ export default function Signup() {
           sx={{ mt: 3, mb: 2 }}
           disabled={isLoading}
         >
-          Zaregistrovat se
+          Create account
         </Button>
         <Box sx={{ textAlign: 'center' }}>
           <Link to="/auth/login" component={RouterLink} variant="body2">
-            Už máte účet? Přihlaste se
+            Already have an account? Log in
           </Link>
         </Box>
       </Box>

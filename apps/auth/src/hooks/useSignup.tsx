@@ -30,19 +30,19 @@ const schema = z
   .object({
     email: z
       .string()
-      .min(1, 'Toto pole je povinné')
-      .email('Neplatný formát e-mailu')
-      .max(255, 'Příliš dlouhý e-mail'),
+      .min(1, 'This field is required')
+      .email('Invalid e-mail address')
+      .max(255, 'Too long e-mail address'),
     password: z
       .string()
-      .min(1, 'Toto pole je povinné')
-      .min(6, 'Heslo musí mít alespoň 6 znaků')
-      .max(1024, 'Příliš dlouhé heslo'),
-    passwordConfirmation: z.string().min(1, 'Toto pole je povinné'),
+      .min(1, 'This field is required')
+      .min(6, 'Password must be at least 6 characters long')
+      .max(1024, 'Too long password'),
+    passwordConfirmation: z.string().min(1, 'This field is required'),
   })
   .refine((data) => data.password === data.passwordConfirmation, {
     path: ['passwordConfirmation'],
-    message: 'Hesla se neshodují',
+    message: 'Passwords do not match',
   });
 
 type FormValues = z.infer<typeof schema>;
