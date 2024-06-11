@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { mount, unmount } from 'dashboard/DashboardApp';
 import { Box, Typography } from '@mui/material';
 import { useUser } from '@hooks/useUser';
+import { ErrorWrapper } from '../components/ErrorWrapper';
 
 const DashboardApp = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -32,23 +33,25 @@ const DashboardApp = () => {
   }, [history, user?.uid]);
 
   return (
-    <Box sx={{ p: 1, position: 'relative' }}>
-      <Typography
-        variant="caption"
-        color="primary"
-        sx={{ position: 'absolute', top: 16, right: 16, fontSize: '1rem' }}
-      >
-        Dashboard MFE
-      </Typography>
-      <Box
-        sx={{
-          border: '1px solid',
-          borderColor: 'primary.main',
-          borderRadius: 2,
-        }}
-        ref={ref}
-      />
-    </Box>
+    <ErrorWrapper>
+      <Box sx={{ p: 1, position: 'relative' }}>
+        <Typography
+          variant="caption"
+          color="primary"
+          sx={{ position: 'absolute', top: 16, right: 16, fontSize: '1rem' }}
+        >
+          Dashboard MFE
+        </Typography>
+        <Box
+          sx={{
+            border: '1px solid',
+            borderColor: 'primary.main',
+            borderRadius: 2,
+          }}
+          ref={ref}
+        />
+      </Box>
+    </ErrorWrapper>
   );
 };
 

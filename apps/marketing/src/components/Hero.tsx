@@ -65,8 +65,10 @@ export default function Hero() {
             sx={{ alignSelf: 'center', width: { sm: '100%', md: '80%' } }}
           >
             A microfrontend prototype based on module-federation, rsbuild using
-            pnpm workspace monorepo approach. This project is a part of the
-            master thesis.
+            pnpm workspace monorepo approach. App is deplyoed through Github
+            Actions on AWS S3 and Cloudfront. For authentication is used
+            Firebase with Firestore databse to save user data. This project is a
+            part of the master thesis.
           </Typography>
 
           <Box sx={{ textAlign: 'center' }}>
