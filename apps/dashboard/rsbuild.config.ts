@@ -47,15 +47,15 @@ export default defineConfig({
           },
           shared: {
             react: {
-              version: '^18.2.0',
+              requiredVersion: '^18.2.0',
               singleton: true,
             },
             'react-dom': {
-              version: '^18.2.0',
+              requiredVersion: '^18.2.0',
               singleton: true,
             },
             'react-router-dom': {
-              version: '^5.2.0',
+              requiredVersion: '^5.2.0',
               singleton: true,
             },
           },

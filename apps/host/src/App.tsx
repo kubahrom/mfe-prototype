@@ -14,6 +14,7 @@ const history = createBrowserHistory();
 
 export default function App() {
   const { user } = useUser();
+
   return (
     <>
       <LoadingScreen />

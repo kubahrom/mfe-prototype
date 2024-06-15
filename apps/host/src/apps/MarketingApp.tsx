@@ -1,5 +1,4 @@
 import { useEffect, useRef } from 'react';
-// import { mount, unmount } from 'marketing/MarketingApp';
 
 import { useHistory } from 'react-router-dom';
 import { Box, Typography } from '@mui/material';

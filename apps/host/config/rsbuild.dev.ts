@@ -41,16 +41,16 @@ export default defineConfig({
           },
           shared: {
             react: {
-              requiredVersion: '^18.2.0',
+              version: '^18.2.0',
               singleton: true,
               strictVersion: false,
             },
             'react-dom': {
-              requiredVersion: '^18.2.0',
+              version: '^18.2.0',
               singleton: true,
             },
             'react-router-dom': {
-              requiredVersion: '^5.2.0',
+              version: '^5.2.0',
               singleton: true,
             },
           },
