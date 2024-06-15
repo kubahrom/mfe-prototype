@@ -1,6 +1,6 @@
 {
   "name": "mfe_host",
-  "private": true,
+  "author": "Jakub Hromádko",
   "version": "1.0.0",
   "scripts": {
     "dev": "rsbuild dev --config config/rsbuild.dev.ts",

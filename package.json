@@ -1,8 +1,8 @@
 {
   "name": "mfe-prototype",
   "description": "DP prototype micro frontends protorype",
-  "private": true,
   "version": "1.0.0",
+  "author": "Jakub Hromádko",
   "scripts": {
     "dev": "pnpm run --filter mfe_* --parallel dev",
     "build": "pnpm run --filter mfe_* build",

@@ -9,7 +9,7 @@
     "clean": "rm -rf dist"
   },
   "keywords": [],
-  "author": "",
+  "author": "Jakub Hromádko",
   "license": "ISC",
   "devDependencies": {
     "typescript": "^5.4.5"

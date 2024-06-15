@@ -1,9 +1,10 @@
 import { useEffect, useRef } from 'react';
 
 import { useHistory } from 'react-router-dom';
-import { mount, unmount } from 'auth/AuthApp';
 import { Box, Typography } from '@mui/material';
 import { ErrorWrapper } from '../components/ErrorWrapper';
+
+const { mount, unmount } = await import('auth/AuthApp');
 
 const AuthApp = () => {
   const ref = useRef<HTMLDivElement>(null);

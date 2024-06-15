@@ -1,9 +1,11 @@
 import { useEffect, useRef } from 'react';
-import { mount, unmount } from 'marketing/MarketingApp';
+// import { mount, unmount } from 'marketing/MarketingApp';
 
 import { useHistory } from 'react-router-dom';
 import { Box, Typography } from '@mui/material';
 import { ErrorWrapper } from '../components/ErrorWrapper';
+
+const { mount, unmount } = await import('marketing/MarketingApp');
 
 const MarketingApp = () => {
   const ref = useRef<HTMLDivElement>(null);

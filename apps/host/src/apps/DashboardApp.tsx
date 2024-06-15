@@ -1,10 +1,11 @@
 import { useEffect, useRef } from 'react';
 
 import { useHistory } from 'react-router-dom';
-import { mount, unmount } from 'dashboard/DashboardApp';
 import { Box, Typography } from '@mui/material';
 import { useUser } from '@hooks/useUser';
 import { ErrorWrapper } from '../components/ErrorWrapper';
+
+const { mount, unmount } = await import('dashboard/DashboardApp');
 
 const DashboardApp = () => {
   const ref = useRef<HTMLDivElement>(null);

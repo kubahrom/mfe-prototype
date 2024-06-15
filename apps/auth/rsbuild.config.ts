@@ -17,7 +17,14 @@ export default defineConfig({
     template: './public/index.html',
     crossorigin: 'anonymous',
   },
-  plugins: [pluginReact()],
+  plugins: [
+    pluginReact({
+      splitChunks: {
+        react: false,
+        router: false,
+      },
+    }),
+  ],
   source: {
     define: publicVars,
   },

@@ -1,6 +1,6 @@
 {
   "name": "mfe_dashboard",
-  "private": true,
+  "author": "Jakub Hromádko",
   "version": "1.0.0",
   "scripts": {
     "dev": "rsbuild dev",
