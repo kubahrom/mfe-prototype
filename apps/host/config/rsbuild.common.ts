@@ -3,7 +3,7 @@ import { pluginReact } from '@rsbuild/plugin-react';
 
 const { publicVars } = loadEnv({ prefixes: ['APP_'] });
 
-export const commonConfig = defineConfig({
+export default defineConfig({
   html: {
     template: './public/index.html',
     crossorigin: 'anonymous',
@@ -20,18 +20,3 @@ export const commonConfig = defineConfig({
     }),
   ],
 });
-
-export const sharedDeps = {
-  react: {
-    version: '^18.2.0',
-    singleton: true,
-  },
-  'react-dom': {
-    version: '^18.2.0',
-    singleton: true,
-  },
-  'react-router-dom': {
-    version: '^5.2.0',
-    singleton: true,
-  },
-};
