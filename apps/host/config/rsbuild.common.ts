@@ -6,7 +6,7 @@ const { publicVars } = loadEnv({ prefixes: ['APP_'] });
 export default defineConfig({
   html: {
     template: './public/index.html',
-    crossorigin: 'anonymous',
+    crossorigin: true,
   },
   source: {
     define: publicVars,

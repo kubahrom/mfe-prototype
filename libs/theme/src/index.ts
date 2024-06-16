@@ -1,10 +1,11 @@
-import { deepPurple } from "@mui/material/colors";
+import { indigo } from "@mui/material/colors";
 import { createTheme } from "@mui/material";
 import createCache from "@emotion/cache";
 
 const theme = createTheme({
   palette: {
-    primary: deepPurple,
+    primary: indigo,
+    secondary: indigo,
   },
 });
 
