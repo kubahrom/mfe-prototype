@@ -1,12 +1,10 @@
-import { defineConfig, loadEnv } from '@rsbuild/core';
-import { pluginReact } from '@rsbuild/plugin-react';
+import { defineConfig, mergeRsbuildConfig } from '@rsbuild/core';
 import { ModuleFederationPlugin } from '@module-federation/enhanced/rspack';
-
-const { publicVars } = loadEnv({ prefixes: ['APP_'] });
+import { commonConfig, sharedDeps } from './rsbuild.common';
 
 const PORT = parseInt(process.env.DEV_PORT || '') || 3000;
 
-export default defineConfig({
+const devConfig = defineConfig({
   server: {
     port: PORT,
   },
@@ -14,23 +12,8 @@ export default defineConfig({
     assetPrefix: `http://localhost:${PORT}`,
     startUrl: true,
   },
-  html: {
-    template: './public/index.html',
-    crossorigin: 'anonymous',
-  },
-  plugins: [
-    pluginReact({
-      splitChunks: {
-        react: false,
-        router: false,
-      },
-    }),
-  ],
-  source: {
-    define: publicVars,
-  },
   tools: {
-    rspack: (config, { appendPlugins }) => {
+    rspack: (_, { appendPlugins }) => {
       appendPlugins([
         new ModuleFederationPlugin({
           name: 'host',
@@ -39,23 +22,11 @@ export default defineConfig({
             auth: `auth@http://localhost:${process.env.DEV_AUTH_PORT || 3002}/mf-manifest.json`,
             dashboard: `dashboard@http://localhost:${process.env.DEV_DASHBOARD_PORT || 3003}/mf-manifest.json`,
           },
-          shared: {
-            react: {
-              version: '^18.2.0',
-              singleton: true,
-              strictVersion: false,
-            },
-            'react-dom': {
-              version: '^18.2.0',
-              singleton: true,
-            },
-            'react-router-dom': {
-              version: '^5.2.0',
-              singleton: true,
-            },
-          },
+          shared: sharedDeps,
         }),
       ]);
     },
   },
 });
+
+export default mergeRsbuildConfig(commonConfig, devConfig);
