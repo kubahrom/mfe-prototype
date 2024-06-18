@@ -32,7 +32,7 @@ const MarketingApp = () => {
   }, [history]);
 
   return (
-    <ErrorWrapper>
+    <ErrorWrapper name="MarkettingApp">
       <Box sx={{ p: 1, position: 'relative' }}>
         <Typography
           variant="caption"

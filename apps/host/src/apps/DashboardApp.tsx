@@ -34,7 +34,7 @@ const DashboardApp = () => {
   }, [history, user?.uid]);
 
   return (
-    <ErrorWrapper>
+    <ErrorWrapper name="DashboardApp">
       <Box sx={{ p: 1, position: 'relative' }}>
         <Typography
           variant="caption"

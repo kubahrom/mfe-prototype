@@ -31,7 +31,7 @@ const AuthApp = () => {
   }, [history]);
 
   return (
-    <ErrorWrapper>
+    <ErrorWrapper name="AuthApp">
       <Box sx={{ p: 1, position: 'relative' }}>
         <Typography
           variant="caption"
