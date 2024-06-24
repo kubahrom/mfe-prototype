@@ -17,9 +17,9 @@ export default function App() {
 
   return (
     <>
-      <LoadingScreen />
       <Router history={history}>
         <Layout>
+          <LoadingScreen />
           <Suspense fallback={<Loading />}>
             <Switch>
               <Route path="/auth">
